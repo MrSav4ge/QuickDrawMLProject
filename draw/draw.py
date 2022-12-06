@@ -1,48 +1,54 @@
 import pygame
 import numpy as np
 
-# Initialize Pygame
-pygame.init()
 
-# Create the canvas with a black background
-canvas_size = (256, 256)
-canvas = pygame.display.set_mode(canvas_size)
-black = (0, 0, 0)
-canvas.fill(black)
+def draw():
+    # Initialize Pygame
+    pygame.init()
 
-# Create a 2D array to store the pixel data
-pixel_data = np.zeros((canvas_size[0], canvas_size[1], 3), dtype=np.uint8)
+    # Create the canvas with a black background
+    canvas_size = (256, 256)
+    canvas = pygame.display.set_mode(canvas_size)
+    black = (0, 0, 0)
+    canvas.fill(black)
 
-# Handle user input
-radius = 10
-color = (255, 255, 255)  # White
-drawing = False
+    # Create a 2D array to store the pixel data
+    pixel_data = np.zeros((canvas_size[0], canvas_size[1], 3), dtype=np.uint8)
 
-while True:
-    for event in pygame.event.get():
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            # Start drawing when the user clicks and drags the mouse
-            drawing = True
-        elif event.type == pygame.MOUSEBUTTONUP:
-            # Stop drawing when the user releases the mouse
-            drawing = False
-        elif event.type == pygame.MOUSEMOTION:
-            # Get the current position of the mouse
-            pos = pygame.mouse.get_pos()
+    # Handle user input
+    radius = 10
+    color = (255, 255, 255)  # White
+    drawing = False
 
-            # Draw a circle at the mouse position
-            if drawing:
-                pygame.draw.circle(canvas, color, pos, radius)
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                # Start drawing when the user clicks and drags the mouse
+                drawing = True
+            elif event.type == pygame.MOUSEBUTTONUP:
+                # Stop drawing when the user releases the mouse
+                drawing = False
+            elif event.type == pygame.MOUSEMOTION:
+                # Get the current position of the mouse
+                pos = pygame.mouse.get_pos()
 
-    # Update the pixel data array
-    pixel_data = pygame.surfarray.pixels2d(canvas)
+                # Draw a circle at the mouse position
+                if drawing:
+                    pygame.draw.circle(canvas, color, pos, radius)
 
-    # Convert the pixel data to RGB format
-    pixel_data = pixel_data.reshape((canvas_size[0], canvas_size[1]))
-    pixel_data = pixel_data.astype(np.uint8)
+        # Update the pixel data array
+        pixel_data = pygame.surfarray.pixels2d(canvas)
 
-    # Print the pixel data as a 2D array of RGB tuples
-    print(pixel_data)
+        # Convert the pixel data to RGB format
+        pixel_data = pixel_data.reshape((canvas_size[0], canvas_size[1]))
+        pixel_data = pixel_data.astype(np.uint8)
 
-    # Update the screen
-    pygame.display.flip()
+        # Print the pixel data as a 2D array of RGB tuples
+        print(pixel_data)
+
+        # Update the screen
+        pygame.display.flip()
+
+
+if __name__ == "__main__":
+    draw()
