@@ -1,0 +1,5 @@
+numpy
+pygame
+pandas
+tensorflow-macos
+tensorflow-metal
