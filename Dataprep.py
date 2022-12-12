@@ -1,5 +1,4 @@
 import numpy as np
-import pandas as pd
 import json
 
 
@@ -29,12 +28,18 @@ def parse_line(ndjson_line):
     npInk = npInk[1:,:]
     return npInk, className
 
+
+
 def loadfile(datafile):
-    data = []
-    output = []
-    with open(datafile) as f:
-        for line in f:
-            data.append(json.loads(line))
-    for line in data:
-        output.append(parse_line(line))
-    return output
+  output = []
+  with open(datafile) as f:        
+    for line in f: 
+      output.append(parse_line(line))
+  return output
+
+
+
+if __name__ == "__main__":
+    clean_data = []
+    data = loadfile(r"C:\Users\skinn\OneDrive\Desktop\437_Project\Data_Files\full_simplified_basketball.ndjson")
+    print(data)
