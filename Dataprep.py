@@ -32,7 +32,7 @@ def parse_line(ndjson_line):
 
 def loadfile(datafile):
   output = []
-  with open(datafile) as f:        
+  with open(datafile, 'r') as f:        
     for line in f: 
       output.append(parse_line(line))
   return output
@@ -42,4 +42,4 @@ def loadfile(datafile):
 if __name__ == "__main__":
     clean_data = []
     data = loadfile(r"C:\Users\skinn\OneDrive\Desktop\437_Project\Data_Files\full_simplified_basketball.ndjson")
-    print(data)
+    #print(data)

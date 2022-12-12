@@ -3,7 +3,7 @@ import tensorflow as tf
 import Dataprep as d
 
 def getData(infile):
-  input = np.reshape(np.array(d.loadfile(infile)), [-1,])
+  input = np.reshape(np.array(d.loadfile(infile), dtype=object), [-1,])
   return input
 
 def createRNN(size):
@@ -28,8 +28,8 @@ def createRNN(size):
     return model
 
 def trainRNN():
-    train = tf.random.normal(getData("/trainValues.json"))  #or whatever type of file
-    test = tf.random.normal(getData("/testValues.json"))  #or whatever type of file
+    train = tf.random.normal(getData(r"C:\Users\skinn\OneDrive\Desktop\437_Project\Data_Files\full_simplified_basketball.ndjson"))  #or whatever type of file
+    test = tf.random.normal(getData(r"C:\Users\skinn\OneDrive\Desktop\437_Project\Data_Files\full_simplified_basketball.ndjson"))  #or whatever type of file
     model = createRNN(len(train))
 
     history = model.fit(train, epochs=10,
@@ -46,3 +46,6 @@ def trainRNN():
 def getPredictions(model):
     data = getData("/drawData.json")
     result = model.predict(np.array(data))
+
+if __name__ == "__main__":
+  getPredictions(trainRNN())
