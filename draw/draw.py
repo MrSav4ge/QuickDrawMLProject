@@ -50,5 +50,15 @@ def draw():
         pygame.display.flip()
 
 
+def nonzero_coordinates(pixel_values):
+    coordinates = []
+    for row_index, row in enumerate(pixel_values):
+        for col_index, value in enumerate(row):
+            if value != 0:
+                coordinates.append([row_index, col_index])
+    return coordinates
+
+
 if __name__ == "__main__":
-    draw()
+    # draw()
+    print(nonzero_coordinates([[255, 0, 0], [0, 255, 255], [255, 0, 255]]))
