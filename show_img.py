@@ -23,3 +23,18 @@ for polyline in polylines:
     d.line(polyline, fill=(0, 0, 0), width=3)
 # display image
 pil_img.show()
+
+
+def transformdata():
+    # transfroms 3d array into a list of tuples containing x and y values
+    polylines = (list(zip(polyline[0], polyline[1])) for polyline in raw_drawing)
+    # Need to transform list of tuples into a 2D array of x and y values.
+    xList = []
+    yList = []
+    for (x,y) in polylines:
+        xList.append(x)
+        yList.append(y)
+    coords = []
+    coords.append(xList)
+    coords.append(yList)
+    print(coords)

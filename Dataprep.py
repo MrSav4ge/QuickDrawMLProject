@@ -1,6 +1,7 @@
 import numpy as np
 import json
 
+# Need to convert the data into a 2d array of xy values
 
 def parse_line(ndjson_line):
     sample = json.loads(ndjson_line)
