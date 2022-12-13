@@ -23,6 +23,9 @@ def draw():
 
     pixel_Array = [[]]
     pixelcount = 0
+    xs = []
+    ys = []
+    coords = []
 
     while True:
         for event in pygame.event.get():
@@ -41,12 +44,18 @@ def draw():
                     pygame.draw.circle(canvas, color, pos, radius)
             elif event.type == pygame.QUIT:
                 print("exiting")
-                for row in pixel_Array:
-                    for pixel in row:
-                        if(pixel == 255):
-                            pixelcount +=1
+                
+                for x in range(255):
+                    for y in range(255):
+                        if(pixel_Array[x][y] == 255):
+                            pixelcount+=1
+                            xs.append(x)
+                            ys.append(y)
+                coords.append(xs)
+                coords.append(ys)
                 print(pixelcount)
-                print(pixel_Array)
+                print(coords)
+                #print(pixel_Array)
                 pygame.quit()
                 exit()
                 
