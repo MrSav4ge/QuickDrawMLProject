@@ -60,5 +60,5 @@ def nonzero_coordinates(pixel_values):
 
 
 if __name__ == "__main__":
-    # draw()
-    print(nonzero_coordinates([[255, 0, 0], [0, 255, 255], [255, 0, 255]]))
+    draw()
+    # print(nonzero_coordinates([[255, 0, 0], [0, 255, 255], [255, 0, 255]]))

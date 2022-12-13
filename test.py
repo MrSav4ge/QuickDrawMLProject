@@ -7,7 +7,7 @@ from keras.layers import Dense, Flatten
 
 # number of points to use from input. If there are not enough,
 # then the array will be padded with PADDING_VALUE
-MAX_LENGTH = 1000
+MAX_LENGTH = 10000
 PADDING_VALUE = 0
 # number of images to use
 IMAGES_USED = 10000
@@ -71,6 +71,10 @@ drawings = np.array(drawings)
 labels = np.array(labels)
 
 # convert labels to one-hot vector
+# [0,2,3,1,2]
+# [[1,0,0,0,0]
+# [0,0,1,0,0]
+# [0,0,0,1,0]]
 one_hot = np.zeros((labels.size, labels.max() + 1))
 one_hot[np.arange(labels.size), labels] = 1
 
@@ -79,7 +83,6 @@ train_X = drawings[: int(0.8 * len(drawings))]
 test_X = drawings[int(0.8 * len(drawings)) :]
 train_y = one_hot[: int(0.8 * len(one_hot))]
 test_y = one_hot[int(0.8 * len(one_hot)) :]
-print(len(train_X))
 
 # create model
 model = Sequential()
