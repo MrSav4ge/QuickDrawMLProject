@@ -1,5 +1,6 @@
 import pygame
 import numpy as np
+from sys import exit
 
 
 def draw():
@@ -16,9 +17,12 @@ def draw():
     pixel_data = np.zeros((canvas_size[0], canvas_size[1], 3), dtype=np.uint8)
 
     # Handle user input
-    radius = 10
+    radius = 1
     color = (255, 255, 255)  # White
     drawing = False
+
+    pixel_Array = [[]]
+    pixelcount = 0
 
     while True:
         for event in pygame.event.get():
@@ -35,6 +39,17 @@ def draw():
                 # Draw a circle at the mouse position
                 if drawing:
                     pygame.draw.circle(canvas, color, pos, radius)
+            elif event.type == pygame.QUIT:
+                print("exiting")
+                for row in pixel_Array:
+                    for pixel in row:
+                        if(pixel == 255):
+                            pixelcount +=1
+                print(pixelcount)
+                print(pixel_Array)
+                pygame.quit()
+                exit()
+                
 
         # Update the pixel data array
         pixel_data = pygame.surfarray.pixels2d(canvas)
@@ -46,8 +61,12 @@ def draw():
         # Print the pixel data as a 2D array of RGB tuples
         print(pixel_data)
 
+        pixel_Array = pixel_data
+
         # Update the screen
         pygame.display.flip()
+
+
 
 
 def nonzero_coordinates(pixel_values):
@@ -60,5 +79,5 @@ def nonzero_coordinates(pixel_values):
 
 
 if __name__ == "__main__":
-    # draw()
-    print(nonzero_coordinates([[255, 0, 0], [0, 255, 255], [255, 0, 255]]))
+    draw()
+    # print(nonzero_coordinates([[255, 0, 0], [0, 255, 255], [255, 0, 255]]))
