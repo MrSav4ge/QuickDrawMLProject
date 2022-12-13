@@ -5,7 +5,7 @@ import json
 
 def parse_line(ndjson_line):
     sample = json.loads(ndjson_line)
-    className = sample["word"]
+    className = applyLabel(sample["word"])
     pixelArray = sample["drawing"]
     strokeLengths = [len(stroke[0]) for stroke in pixelArray]
     totalPixels = sum(strokeLengths)
@@ -38,7 +38,29 @@ def loadfile(datafile):
       output.append(parse_line(line))
   return output
 
-
+# Function to pass string class labels to in order to get a integer equivalent.
+def applyLabel(wordLabel):
+    match wordLabel:
+        case "airplane":
+            return 1
+        case "basketball":
+            return 2
+        case "fork":
+            return 3
+        case "door":
+            return 4
+        case "coffee cup":
+            return 5
+        case "sailboat":
+            return 6
+        case "pants":
+            return 7
+        case "campfire":
+            return 8
+        case "butterfly":
+            return 9
+        case "tornado":
+            return 10
 
 if __name__ == "__main__":
     clean_data = []
