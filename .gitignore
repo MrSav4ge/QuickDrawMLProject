@@ -129,3 +129,4 @@ dmypy.json
 .pyre/
 .ndjson
 raw_data/
+raw_data_tmp/

@@ -5,7 +5,7 @@ from keras import models
 import utils
 import os
 
-MODEL = f"{os.getcwd()}/models/model-1670996962.h5"
+MODEL = f"{os.getcwd()}/models/model-1671143238.h5"
 
 
 def load_model(filepath):
@@ -77,7 +77,6 @@ def draw():
                 print("exiting")
 
                 coords = nonzero_coordinates(pixel_Array)
-                coords = coords[::5]
                 print(coords)
                 print(len(coords))
 
@@ -93,9 +92,6 @@ def draw():
         # Convert the pixel data to RGB format
         pixel_data = pixel_data.reshape((canvas_size[0], canvas_size[1]))
         pixel_data = pixel_data.astype(np.uint8)
-
-        # Print the pixel data as a 2D array of RGB tuples
-        print(pixel_data)
 
         pixel_Array = pixel_data
 

@@ -1,11 +1,13 @@
 import json
 from PIL import Image, ImageDraw
+import numpy as np
+import utils
 
 
 def show():
     # read ndjson lines
     lines = open(
-        "/Users/jakelanders/code/QuickDrawMLProject/full-simplified-airplane.ndjson",
+        "/Users/jakelanders/code/QuickDrawMLProject/raw_data/full-simplified-door.ndjson",
         "r",
     ).readlines()
     # grab the first line, JSON parse it and fetch the 'drawing' array
@@ -18,13 +20,23 @@ def show():
     print("after", polylines)
 
     # make a new image
-    pil_img = Image.new("RGB", (240, 270), (255, 255, 255))
+    pil_img = Image.new("RGB", (256, 256), (255, 255, 255))
     # get a drawing context
     d = ImageDraw.Draw(pil_img)
     # render each polyline
     for polyline in polylines:
-        d.line(polyline, fill=(0, 0, 0), width=3)
+        d.line(polyline, fill=(0, 0, 0), width=1)
+        # d.point((polyline[0], polyline[1]), fill=(0, 0, 0))
+
+    arr = []
     # display image
+    for i, item in enumerate(pil_img.getdata()):
+        if item != (255, 255, 255):
+            arr.append([int(i % 256), int(i / 256)])
+
+    print(len(arr))
+    print(arr)
+
     pil_img.show()
 
 
