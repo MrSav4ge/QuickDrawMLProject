@@ -5,7 +5,7 @@ from keras import models
 import utils
 import os
 
-MODEL = f"{os.getcwd()}/models/model-1671143238.h5"
+MODEL = f"{os.getcwd()}/models/model-1671155539.h5"
 
 
 def load_model(filepath):

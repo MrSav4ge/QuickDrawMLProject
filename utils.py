@@ -17,18 +17,6 @@ __labels = {
 }
 
 
-# def transformdata(raw):
-#     # transfroms 3d array into a list of tuples containing x and y values
-#     polylines = [list(zip(polyline[0], polyline[1])) for polyline in raw]
-#     coords = []
-
-#     for i in polylines:
-#         for (x, y) in i:
-#             coords.append([x, y])
-
-#     return coords
-
-
 def transformdata(raw):
     # transfroms 3d array into a list of tuples containing x and y values
     polylines = (list(zip(polyline[0], polyline[1])) for polyline in raw)
@@ -61,9 +49,9 @@ def load_from_file(filename):
             # add if quality
             if d["recognized"]:
                 obj.append(d)
-                if len(obj) == 1000:
+                if len(obj) == 2000:
                     break
-    return obj[:1000]
+    return obj[:2000]
 
 
 def get_label(label: str) -> int:
